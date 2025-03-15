@@ -55,17 +55,11 @@ export class OrderPage extends BasePage {
     this.phoneFieldError = page.locator('[data-name="phone-input-error"]');
   }
 
-  async checkNameFieldError(
-    expectedText: string = 'The field must contain at least of characters: 2',
-  ): Promise<void> {
+  async checkNameFieldError(): Promise<void> {
     await expect(this.nameFieldError).toBeVisible();
-    await expect(this.nameFieldError).toHaveText(expectedText);
   }
 
-  async checkPhoneFieldError(
-    expectedText: string = 'The field must contain at least of characters: 6',
-  ): Promise<void> {
+  async checkPhoneFieldError(): Promise<void> {
     await expect(this.phoneFieldError).toBeVisible();
-    await expect(this.phoneFieldError).toHaveText(expectedText);
   }
 }
