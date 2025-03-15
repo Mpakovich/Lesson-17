@@ -33,7 +33,7 @@ test('TL-18-3 Check footer on order not found page', async ({ page }) => {
   await loginPage.open();
   const orderPage = await loginPage.signIn(USERNAME, PASSWORD);
   await orderPage.statusButton.click();
-  await orderPage.orderNumberFiled.fill('12341234');
+  await orderPage.orderNumberField.fill('12341234');
   await orderPage.trackButton.click();
   await notFoundPage.checkNotFoundTitle();
   await notFoundPage.checkFooterAttached();
