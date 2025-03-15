@@ -27,7 +27,7 @@ test('TL-18-2 Check footer on order page', async ({ page }) => {
   await orderPage.tosLink.checkVisible();
 });
 
-test.only('TL-18-3 Check footer on order not found page', async ({ page }) => {
+test('TL-18-3 Check footer on order not found page', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const notFoundPage = new OrderNotFoundPage(page);
   await loginPage.open();
