@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 import { OrderPage } from './order-page';
 import { SERVICE_URL } from '../../config/env-data';
 import { Input } from '../atoms/Input';
@@ -10,6 +10,8 @@ export class LoginPage extends BasePage {
   readonly signInButton: Button;
   readonly usernameField: Input;
   readonly passwordField: Input;
+  readonly usernameError: Locator;
+  readonly passwordError: Locator;
   // add more locators here
 
   constructor(page: Page) {
@@ -17,6 +19,8 @@ export class LoginPage extends BasePage {
     this.signInButton = new Button(page, '[data-name=signIn-button]');
     this.usernameField = new Input(page, '[data-name=username-input]');
     this.passwordField = new Input(page, '[data-name=password-input]');
+    this.usernameError = page.locator('[data-name="username-input-error"]').nth(0);
+    this.passwordError = page.locator('[data-name="username-input-error"]').nth(1);
     // continue with the rest of the implementation below
   }
 
@@ -32,6 +36,11 @@ export class LoginPage extends BasePage {
     await this.signInButton.click();
     return new OrderPage(this.page);
   }
+  async checkUsernameErrorMessage(): Promise<void> {
+    await expect(this.usernameError).toBeVisible();
+  }
 
-  // continue with the rest of the implementation below
+  async checkPasswordErrorMessage(): Promise<void> {
+    await expect(this.passwordError).toBeVisible();
+  }
 }
